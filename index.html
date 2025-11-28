@@ -1,0 +1,95 @@
+// 1. Цифрүүдийн нийлбэр палиндром эсэх
+function isDigitsSumPalindrome(n){
+    let str = Math.abs(n) + "";
+    let sum = 0;
+
+    for(let i = 0; i < str.length; i++){
+        sum = sum + Number(str[i]);
+    }
+
+    let sumStr = sum + "";
+    let reversed = sumStr.split("").reverse().join("");
+
+    if(sumStr == reversed){
+        console.log(n + " -> цифрийн нийлбэр " + sum + " нь палиндром мөн ✅");
+    }else{
+        console.log(n + " -> цифрийн нийлбэр " + sum + " нь палиндром биш ❌");
+    }
+}
+
+// 2. Чоно туулайг гүйцэх хугацаа (зайг км-аар авна)
+function catchTime(distance){
+    let wolf = 25;
+    let rabbit = 18;
+    let diff = wolf - rabbit;
+
+    if(diff <= 0){
+        console.log("Чоно туулайг гүйцэж чадахгүй ❌");
+        return;
+    }
+
+    let hours = distance / diff;
+    let minutes = hours * 60;
+    let seconds = minutes * 60;
+
+    let m = Math.floor(minutes);
+    let s = Math.floor(seconds - m * 60);
+
+    console.log("Анхны зай: " + distance + " км");
+    console.log("Гүйцэх хугацаа: " + m + " мин " + s + " сек 🕒");
+}
+
+// 3. Байрны орц, давхар, хаалганы дугаар олох
+function locateApartment(num){
+    let floors = 9;
+    let entrances = 3;
+    let apts = 4;
+    let aptsPerEntrance = floors * apts;
+
+    if(num < 1 || num > 108){
+        console.log("Байрны дугаар 1-108 хооронд байх ёстой ⚠️");
+        return;
+    }
+
+    let entrance = Math.floor((num - 1) / aptsPerEntrance) + 1;
+    let floor = Math.floor(((num - 1) % aptsPerEntrance) / apts) + 1;
+    let door = ((num - 1) % apts) + 1;
+
+    console.log(num + " -> " + entrance + "-р орц, " + floor + "-р давхар, " + door + "-р хаалга 🚪");
+}
+
+// 4. 5 тооны LCM олох
+function lcmArray(arr){
+    function gcd(a, b){
+        while(b != 0){
+            let r = a % b;
+            a = b;
+            b = r;
+        }
+        return a;
+    }
+
+    function lcm(a, b){
+        return a * b / gcd(a, b);
+    }
+
+    let result = 1;
+    for(let i = 0; i < arr.length; i++){
+        result = lcm(result, arr[i]);
+    }
+
+    console.log(arr + " -> Хамгийн бага ерөнхий хуваагдагч: " + result + " ✅");
+}
+
+// 5. Өглөө квадрат, орой язгуур
+function morning(n){
+    console.log(n + " -> 2 зэрэг = " + (n * n));
+}
+
+function evening(n){
+    if(n < 0){
+        console.log("Сөрөг тооноос язгуур авах боломжгүй ⚠️");
+        return;
+    }
+    console.log(n + " -> язгуур = " + Math.sqrt(n));
+}
