@@ -1,70 +1,173 @@
 <!DOCTYPE html>
-<html>
+<html lang="mn">
 <head>
-    <meta charset="UTF-8">
-    <title>javascript bodlogo </title>
+  <meta charset="UTF-8">
+  <title>Java Bodlogo</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .box {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    button {
+      margin-top: 10px;
+      padding: 7px 15px;
+      border: none;
+      background: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
+<h2>lab7</h2>
+
+<!-- 1-р бодлого -->
+<div class="box">
+  <h3>1. Гараас өгсөн тооны цифрүүдийн нийлбэр нь палимдром мөн эсэхийг шалга</h3>
+  <input id="num1" type="number" placeholder="Тоог оруул...">
+  <button onclick="task1()">Шалгах</button>
+  <p id="res1"></p>
+</div>
+
+<!-- 2-р бодлого -->
+<div class="box">
+  <h3>2. Чоно 25 км/ц хурдтай, туулай 18 км/ц хурдтай. Гараас өгсөн зайтай байхад хэдэн минут хэдэн секундын дараа гэхэд гүйцэх вэ?</h3>
+  <input id="dist" type="number" placeholder="Зайг оруул (км)">
+  <button onclick="task2()">Бодох</button>
+  <p id="res2"></p>
+</div>
+
+<!-- 3-р бодлого -->
+<div class="box">
+  <h3>3. Байшин 9 давхар, 3 орцтой, давхартаа 4 айлтай бол гараас өгсөн тоот нь хэддүгээр орцны хэддүгээр давхарын хэд дэх хаалга вэ?</h3>
+  <input id="apt" type="number" placeholder="Тоот...">
+  <button onclick="task3()">Хайх</button>
+  <p id="res3"></p>
+</div>
+
+<!-- 4-р бодлого -->
+<div class="box">
+  <h3>4. Array-д өгөгдсөн 5 тооны хамгийн бага ерөнхий хуваагдагчийг ол?</h3>
+  <input id="arr" type="text" placeholder="Ж: 20,40,60,80,100">
+  <button onclick="task4()">Олох</button>
+  <p id="res4"></p>
+</div>
+
+<!-- 5-р бодлого -->
+<div class="box">
+  <h3>5. Вэб сайтруу өглөө ороход гараас өгсөн тооны 2 зэрэгийг, орой ороход гараас өгсөн тооны язгуурыг ол?</h3>
+  <input id="num5" type="number" placeholder="Тоог оруул...">
+  <button onclick="task5()">Тооцох</button>
+  <p id="res5"></p>
+</div>
+
+
 <script>
-// 1. Цифрийн нийлбэр палиндром эсэх
-function isDigitsSumPalindrome(n){
-    let str = Math.abs(n) + "";
-    let sum = 0;
-    for(let i = 0; i < str.length; i++){
-        sum += Number(str[i]);
-    }
-    let sumStr = sum + "";
-    let reversed = sumStr.split("").reverse().join("");
-    return {input: n, digitsSum: sum, isPalindrome: sumStr == reversed};
+// -------------------- 1-р бодлого --------------------
+function task1() {
+  let num = Number(document.getElementById("num1").value);
+  
+  let sum = 0, n = Math.abs(num);
+  while (n > 0) {
+    sum += n % 10;
+    n = Math.floor(n / 10);
+  }
+
+  let s = sum.toString();
+  let isPal = (s === s.split("").reverse().join(""));
+
+  document.getElementById("res1").innerText =
+    `Нийлбэр = ${sum} → ${isPal ? ' Palindrome ✔' : 'Палиндром биш ✘'}`;
 }
 
-// 2. Гүйцэх хугацаа (мин, сек)
-function catchTime(distance){
-    let diff = 25 - 18;
-    if(diff <= 0) return {caught:false};
-    let hours = distance / diff;
-    let minutes = hours * 60;
-    let seconds = minutes * 60;
-    let m = Math.floor(minutes);
-    let s = Math.floor(seconds - m * 60);
-    return {distanceKm: distance, caught:true, minutes: m, seconds: s};
+
+// -------------------- 2-р бодлого --------------------
+function task2() {
+  let d = Number(document.getElementById("dist").value);
+  const diff = 7; // 25 - 18
+
+  let hours = d / diff;
+  let minutes = Math.floor(hours * 60);
+  let seconds = Math.round((hours * 60 - minutes) * 60);
+
+  document.getElementById("res2").innerText =
+    `${minutes} минут ${seconds} секунд`;
 }
 
-// 3. Байрлал олох
-function locateApartment(num){
-    let perEntrance = 9 * 4;
-    if(num < 1 || num > 108) return {error:"invalid"};
-    let entrance = Math.floor((num - 1) / perEntrance) + 1;
-    let floor = Math.floor(((num - 1) % perEntrance) / 4) + 1;
-    let door = ((num - 1) % 4) + 1;
-    return {number:num, entrance:entrance, floor:floor, door:door};
+
+// -------------------- 3-р бодлого --------------------
+function task3() {
+  let num = Number(document.getElementById("apt").value);
+  const perEntrance = 36;
+
+  if (num < 1 || num > 108) {
+    document.getElementById("res3").innerText = "Ийм тоот байхгүй!";
+    return;
+  }
+
+  let entrance = Math.ceil(num / perEntrance);
+  let start = (entrance - 1) * perEntrance + 1;
+
+  let offset = num - start;
+  let floor = Math.floor(offset / 4) + 1;
+  let door = offset % 4 + 1;
+
+  document.getElementById("res3").innerText =
+    `${entrance}-р орц, ${floor}-р давхар, ${door}-р хаалга`;
 }
 
-// 4. LCM олох (хүснэгтээр хэвлэнэ)
-function lcmArray(arr){
-    function gcd(a, b){ while(b){ let r=a%b; a=b; b=r;} return a; }
-    function lcm(a,b){ return a*b/gcd(a,b); }
-    let result = 1;
-    for(let i=0;i<arr.length;i++){
-        result = lcm(result,arr[i]);
-    }
-    console.table([{numbers: arr.join(", "), LCM: result}]);
-    return result;
+
+// -------------------- 4-р бодлого --------------------
+function gcd(a, b) {
+  while (b !== 0) {
+    let t = b;
+    b = a % b;
+    a = t;
+  }
+  return a;
 }
 
-// 5. Квадрат ба язгуур
-function morningSquare(n){ return {input:n, result:n*n}; }
-function eveningSqrt(n){ return {input:n, result:Math.sqrt(n)}; }
+function task4() {
+  let arr = document.getElementById("arr").value
+              .split(",")
+              .map(Number);
 
-// === Дуудаж хүснэгтээр хэвлэх ===
-console.table([ isDigitsSumPalindrome(121) ]);
-console.table([ catchTime(5) ]);
-console.table([ locateApartment(57) ]);
-lcmArray([2,4,6,8,10]);
-console.table([ morningSquare(7) ]);
-console.table([ eveningSqrt(49) ]);
+  let g = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    g = gcd(g, arr[i]);
+  }
+
+  document.getElementById("res4").innerText = "ХБЕХ = " + g;
+}
+
+
+// -------------------- 5-р бодлого --------------------
+function task5() {
+  let num = Number(document.getElementById("num5").value);
+  let hour = new Date().getHours();
+
+  let result = "";
+  if (hour >= 6 && hour <= 17) {
+    result = `${num}² = ${num ** 2}`;
+  } else {
+    result = `√${num} = ${Math.sqrt(num)}`;
+  }
+
+  document.getElementById("res5").innerText = result;
+}
+
 </script>
 
 </body>
 </html>
+
