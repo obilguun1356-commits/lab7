@@ -87,7 +87,7 @@ function task1() {
   let isPal = (s === s.split("").reverse().join(""));
 
   document.getElementById("res1").innerText =
-    `Нийлбэр = ${sum} → ${isPal ? ' Palindrome ✔' : 'Палиндром биш ✘'}`;
+    `Нийлбэр = ${sum} → ${isPal ? ' Palindrome ✔' : 'Palindrome bish ✘'}`;
 }
 
 
@@ -101,7 +101,7 @@ function task2() {
   let seconds = Math.round((hours * 60 - minutes) * 60);
 
   document.getElementById("res2").innerText =
-    `${minutes} минут ${seconds} секунд`;
+    `${minutes} minute ${seconds} second`;
 }
 
 
@@ -111,7 +111,7 @@ function task3() {
   const perEntrance = 36;
 
   if (num < 1 || num > 108) {
-    document.getElementById("res3").innerText = "Ийм тоот байхгүй!";
+    document.getElementById("res3").innerText = "Tiim toot bhgui ee!!";
     return;
   }
 
@@ -123,7 +123,7 @@ function task3() {
   let door = offset % 4 + 1;
 
   document.getElementById("res3").innerText =
-    `${entrance}-р орц, ${floor}-р давхар, ${door}-р хаалга`;
+    `${entrance}-r orts, ${floor}-r davhar, ${door}-r haalga`;
 }
 
 
