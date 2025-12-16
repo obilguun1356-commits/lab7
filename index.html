@@ -35,39 +35,39 @@
 <div class="box">
   <h3>1. Гараас өгсөн тооны цифрүүдийн нийлбэр нь палиндром мөн эсэхийг шалга</h3>
   <input id="num1" type="number" placeholder="Тоог оруул...">
-  <button onclick="task1()">Шалгах</button>
+  <button onclick="task1()">Shalgah</button>
   <p id="res1"></p>
 </div>
 
 <!-- 2-р бодлого -->
 <div class="box">
   <h3>2. Чоно 25 км/ц хурдтай, туулай 18 км/ц хурдтай. Гараас өгсөн зайтай байхад хэдэн минут хэдэн секундын дараа гэхэд гүйцэх вэ?</h3>
-  <input id="dist" type="number" placeholder="Зайг оруул (км)">
-  <button onclick="task2()">Бодох</button>
+  <input id="dist" type="number" placeholder="Zaig oruul (km)">
+  <button onclick="task2()">Bodoh</button>
   <p id="res2"></p>
 </div>
 
 <!-- 3-р бодлого -->
 <div class="box">
   <h3>3. Байшин 9 давхар, 3 орцтой, давхартаа 4 айлтай бол гараас өгсөн тоот нь хэддүгээр орцны хэддүгээр давхарын хэд дэх хаалга вэ?</h3>
-  <input id="apt" type="number" placeholder="Тоот...">
-  <button onclick="task3()">Хайх</button>
+  <input id="apt" type="number" placeholder="Toot..">
+  <button onclick="task3()">Haih</button>
   <p id="res3"></p>
 </div>
 
 <!-- 4-р бодлого -->
 <div class="box">
   <h3>4. Array-д өгөгдсөн 5 тооны хамгийн бага ерөнхий хуваагдагчийг ол?</h3>
-  <input id="arr" type="text" placeholder="Ж: 20,40,60,80,100">
-  <button onclick="task4()">Олох</button>
+  <input id="arr" type="text" placeholder="jishee: 20,40,60,80,100">
+  <button onclick="task4()">Oloh</button>
   <p id="res4"></p>
 </div>
 
 <!-- 5-р бодлого -->
 <div class="box">
   <h3>5. Вэб сайтруу өглөө ороход гараас өгсөн тооны 2 зэрэгийг, орой ороход гараас өгсөн тооны язгуурыг ол?</h3>
-  <input id="num5" type="number" placeholder="Тоог оруул...">
-  <button onclick="task5()">Тооцох</button>
+  <input id="num5" type="number" placeholder="Toog oruul">
+  <button onclick="task5()">Tootsoh</button>
   <p id="res5"></p>
 </div>
 
@@ -157,7 +157,7 @@ function task5() {
   let hour = new Date().getHours();
 
   let result = "";
-  if (hour >= 6 && hour <= 17) {
+  if (hour >= 1 && hour <= 12) {
     result = `${num}² = ${num ** 2}`;
   } else {
     result = `√${num} = ${Math.sqrt(num)}`;
